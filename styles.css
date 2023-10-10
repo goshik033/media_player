@@ -1,0 +1,168 @@
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    min-height: inherit;
+    font-size: inherit;
+}
+
+html,
+body {
+    height: 100%;
+    line-height: 1;
+}
+
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    background: #212121;
+}
+
+
+.player {
+    display: flex;
+    background: #424242;
+    color: #fff; 
+    flex-direction: column;
+    align-items: center;
+    max-width: 380px;
+    width: 100%;
+    padding-bottom: 25px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    
+}
+
+.title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #3498db;
+}
+
+.cover {
+    display: flex;
+    justify-content: center;
+}
+
+.cover__img {
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+}
+
+.song {
+    text-align: center;
+    margin-top:47px;
+    margin-left: 25px;
+    margin-right:25px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: rgba(255, 255, 255, 0.6); /* Dark text color for the song title */
+}
+
+.progress__container {
+    margin-left:25px;
+    margin-right:25px;
+    background: rgba(255, 255, 255, 0.6); /* Light gray background for progress container */
+    border-radius: 5px;
+    width: 80%;
+    height: 10px;
+    margin-top: 25px; /* Adjusted margin for progress container */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.progress__container:hover {
+    background: #616161; /* Darker gray background on hover */
+}
+
+.progress {
+    background: #3498db; /* Blue progress bar */
+    width: 150px;
+    border-radius: 5px;
+    height: 100%; /* Fills the entire progress container height */
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px; /* Adjusted margin for buttons */
+}
+
+/* Styling for control buttons */
+.buttons .btn {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 50%; /* Make the button circular */
+    background-color: #212121; /* Set the button background color to white */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow to the button */
+    margin: 5px; /* Add some margin around the buttons */
+}
+
+.buttons .btn svg {
+    cursor: pointer;
+    width: 50%;
+    height: 50%;
+    fill: rgba(255, 255, 255, 0.6); /* Adjust the color of the SVG icons */
+}
+.buttons .play svg{
+    cursor: pointer;
+    width: 50%;
+    height: 50%;
+    fill: rgba(255, 255, 255, 0.6); /* Adjust the color of the SVG icons */
+}
+
+.buttons .btn:hover {
+    background-color: #2c2c2c;
+    border-radius: 50%;
+}
+
+
+
+
+
