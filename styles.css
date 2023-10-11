@@ -1,4 +1,3 @@
-
 *,
 *::before,
 *::after {
@@ -46,22 +45,22 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100%;
-    background: #212121;
+    background: #EFF5F9;
 }
 
 
 .player {
     display: flex;
-    background: #424242;
-    color: #fff; 
+    background: #F7FBFD;
+    color: #fff;
     flex-direction: column;
     align-items: center;
     max-width: 380px;
     width: 100%;
     padding-bottom: 25px;
     border-radius: 30px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
-    
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
 }
 
 .title {
@@ -81,8 +80,9 @@ body {
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
     max-width: 100%;
+    /*min-height: 380px;*/
     height: auto;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .song {
@@ -94,13 +94,13 @@ body {
     font-weight: bold;
     font-size: 24px;
     line-height: 28px;
-    color: rgba(255, 255, 255, 0.6); /* Dark text color for the song title */
+    color:#728C98; /* Dark text color for the song title */
 }
 
 .progress__container {
     margin-left:25px;
     margin-right:25px;
-    background: rgba(255, 255, 255, 0.6); /* Light gray background for progress container */
+    background: #F7FBFD;
     border-radius: 5px;
     width: 80%;
     height: 10px;
@@ -108,18 +108,44 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    /*transition: background-color 0.3s ease; !* Smooth transition for hover effect *!*/
 }
 
 .progress__container:hover {
-    background: #616161; /* Darker gray background on hover */
+
+    /*background: #616161; !* Darker gray background on hover *!*/
 }
 
-.progress {
-    background: #3498db; /* Blue progress bar */
-    width: 150px;
-    border-radius: 5px;
-    height: 100%; /* Fills the entire progress container height */
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 0.5rem;
+    cursor: pointer;
+    animate: 0.2s;
+    border: 0;
+    border-radius: 1rem;
+    bottom: 0;
+    background: #F7FBFD;
+    box-shadow: 0.3rem 0.3rem 1rem #F7FBFD, -0.3rem -0.2rem 0.8rem rgba(78, 134, 165, 0.03), inset 1rem 1rem 2.3rem rgba(78, 134, 165, 0.05), inset 0.1rem 0.1rem 0 rgba(78, 134, 165, 0.05);
+}
+ /*ползунок*/
+input[type=range]::-moz-range-thumb {
+    border: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+    background: #F7FBFD;
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.2rem 1.2rem rgba(78, 134, 165, 0.12), 0.1rem 0.1rem 0.5rem rgba(78, 134, 165, 0.12), 0 0 0.1rem #F7FBFD, inset 0.2rem 0.2rem 0.5rem rgba(78, 134, 165, 0.05), inset 0.2rem 0.2rem 0 #F7FBFD;
+    height: 1.4rem;
+    padding: 0;
+    width: 1.4rem;
+}
+
+
+.progress-slider {
+    background: #F7FBFD;
+    width: 100%;
 }
 
 .buttons {
@@ -139,30 +165,35 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 50%; /* Make the button circular */
-    background-color: #212121; /* Set the button background color to white */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow to the button */
-    margin: 5px; /* Add some margin around the buttons */
+    background-color: #F7FBFD; /* Set the button background color to white */
+    box-shadow: 1rem 1rem 4rem rgba(78, 134, 165, 0.09),
+    0.5rem 0.5rem 2rem rgba(78, 134, 165, 0.09),
+    -0.5rem -1.5rem 2rem white, inset 1rem 1rem 2.3rem
+    rgba(78, 134, 165, 0.05), 0px 0px 0.1rem #FFFFFF,
+    inset 0.1rem 0.1rem 0 #FFFFFF;
+    margin: 10px; /* Add some margin around the buttons */
 }
 
 .buttons .btn svg {
     cursor: pointer;
     width: 50%;
     height: 50%;
-    fill: rgba(255, 255, 255, 0.6); /* Adjust the color of the SVG icons */
+    fill: #728C98; /* Adjust the color of the SVG icons */
 }
 .buttons .play svg{
     cursor: pointer;
     width: 50%;
     height: 50%;
-    fill: rgba(255, 255, 255, 0.6); /* Adjust the color of the SVG icons */
+    fill: #728C98; /* Adjust the color of the SVG icons */
+}
+.buttons .play {
+
+    width: 90px;
+    height: 90px;
+
 }
 
 .buttons .btn:hover {
-    background-color: #2c2c2c;
+    background-color: #FFFFFF;
     border-radius: 50%;
 }
-
-
-
-
-
