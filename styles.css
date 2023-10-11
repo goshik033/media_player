@@ -1,3 +1,15 @@
+:root {
+    --background-wrapper: rgba(255, 186, 227, 0.96);
+    --player-background: #ffe8f8; /* Более розовый оттенок */
+    --player-text-color: #FF4E94; /* Более розовый оттенок */
+    --song-title-color: #FF73A1; /* Более розовый оттенок */
+    --progress-slider-background: #FEEAF6; /* Более розовый оттенок */
+    --progress-slider-fill: #FF88B9; /* Более розовый оттенок */
+    --control-button-background: #FEEAF6; /* Более розовый оттенок */
+    --control-button-hover-background: #FFF4FD; /* Более светлый розовый оттенок */
+    --control-button-icon-color: #FF4E94; /* Более розовый оттенок */
+}
+
 *,
 *::before,
 *::after {
@@ -35,8 +47,8 @@ html,
 body {
     height: 100%;
     line-height: 1;
+    font-family: 'Roboto', sans-serif;
 }
-
 
 .wrapper {
     overflow: hidden;
@@ -45,24 +57,23 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100%;
-    background: #EFF5F9;
+    background: var(--background-wrapper);
 }
-
 
 .player {
     position: relative;
     z-index: 1;
     display: flex;
-    background: #F7FBFD;
-    color: #fff;
+    background: var(--player-background);
+    color: var(--player-text-color);
     flex-direction: column;
     align-items: center;
     max-width: 380px;
     width: 100%;
     padding-bottom: 25px;
     border-radius: 30px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    opacity: 0.8; /* Пример прозрачности (меньше 1 для прозрачности) */
 }
 
 .title {
@@ -70,7 +81,7 @@ body {
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
-    color: #3498db;
+    color: var(--song-title-color);
 }
 
 .cover {
@@ -85,38 +96,33 @@ body {
     /*min-height: 380px;*/
     height: auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
 }
 
 .song {
     text-align: center;
-    margin-top:47px;
+    margin-top: 47px;
     margin-left: 25px;
-    margin-right:25px;
+    margin-right: 25px;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
     line-height: 28px;
-    color:#728C98; /* Dark text color for the song title */
+    color: var(--song-title-color);
 }
 
 .progress__container {
-    margin-left:25px;
-    margin-right:25px;
-    background: #F7FBFD;
+    margin-left: 25px;
+    margin-right: 25px;
+    background: var(--progress-slider-background);
     border-radius: 5px;
     width: 80%;
     height: 10px;
-    margin-top: 25px; /* Adjusted margin for progress container */
+    margin-top: 25px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    /*transition: background-color 0.3s ease; !* Smooth transition for hover effect *!*/
 }
-
-/*input[type=range]::-moz-range-track:hover {*/
-/*    background: #728C98;;*/
-/*}*/
-
 
 input[type=range]::-moz-range-track {
     width: 100%;
@@ -126,22 +132,23 @@ input[type=range]::-moz-range-track {
     border: 0;
     border-radius: 1rem;
     bottom: 0;
-    background: #F7FBFD;
-    box-shadow: 0.3rem 0.3rem 1rem #F7FBFD, -0.3rem -0.2rem 0.8rem rgba(78, 134, 165, 0.03), inset 1rem 1rem 2.3rem rgba(78, 134, 165, 0.05), inset 0.1rem 0.1rem 0 rgba(78, 134, 165, 0.05);
+    background: var(--progress-slider-background);
+    box-shadow: 0.3rem 0.3rem 1rem var(--progress-slider-background), -0.3rem -0.2rem 0.8rem rgba(78, 134, 165, 0.03), inset 1rem 1rem 2.3rem rgba(78, 134, 165, 0.05), inset 0.1rem 0.1rem 0 rgba(78, 134, 165, 0.05);
 }
- /*ползунок*/
+
 input[type=range]::-moz-range-thumb {
     border: 0;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -6px;
-    background: #F7FBFD;
+    background: var(--progress-slider-background);
     border-radius: 1rem;
-    box-shadow: 0.2rem 0.2rem 1.2rem rgba(78, 134, 165, 0.12), 0.1rem 0.1rem 0.5rem rgba(78, 134, 165, 0.12), 0 0 0.1rem #F7FBFD, inset 0.2rem 0.2rem 0.5rem rgba(78, 134, 165, 0.05), inset 0.2rem 0.2rem 0 #F7FBFD;
+    box-shadow: 0.2rem 0.2rem 1.2rem rgba(78, 134, 165, 0.12), 0.1rem 0.1rem 0.5rem rgba(78, 134, 165, 0.12), 0 0 0.1rem var(--progress-slider-background), inset 0.2rem 0.2rem 0.5rem rgba(78, 134, 165, 0.05), inset 0.2rem 0.2rem 0 var(--progress-slider-background);
     height: 1.4rem;
     padding: 0;
     width: 1.4rem;
 }
+
 input[type="range"]::-moz-range-progress {
     height: 0.5rem;
     cursor: pointer;
@@ -149,12 +156,11 @@ input[type="range"]::-moz-range-progress {
     border: 0;
     border-radius: 1rem;
     bottom: 0;
-    background-color: #43e5f7;
+    background-color: var(--progress-slider-fill);
 }
 
-
 .progress-slider {
-    background: #F7FBFD;
+    background: var(--progress-slider-background);
     width: 100%;
 }
 
@@ -162,10 +168,9 @@ input[type="range"]::-moz-range-progress {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 25px; /* Adjusted margin for buttons */
+    margin-top: 25px;
 }
 
-/* Styling for control buttons */
 .buttons .btn {
     width: 60px;
     height: 60px;
@@ -174,42 +179,39 @@ input[type="range"]::-moz-range-progress {
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    border-radius: 50%; /* Make the button circular */
-    background-color: #F7FBFD; /* Set the button background color to white */
-    box-shadow: 1rem 1rem 4rem rgba(78, 134, 165, 0.09),
-    0.5rem 0.5rem 2rem rgba(78, 134, 165, 0.09),
-    -0.5rem -1.5rem 2rem white, inset 1rem 1rem 2.3rem
-    rgba(78, 134, 165, 0.05), 0px 0px 0.1rem #FFFFFF,
-    inset 0.1rem 0.1rem 0 #FFFFFF;
-    margin: 10px; /* Add some margin around the buttons */
+    border-radius: 50%;
+    background-color: var(--control-button-background);
+    box-shadow: 1rem 1rem 4rem rgba(78, 134, 165, 0.09), 0.5rem 0.5rem 2rem rgba(78, 134, 165, 0.09), -0.5rem -1.5rem 2rem white, inset 1rem 1rem 2.3rem rgba(78, 134, 165, 0.05), 0px 0px 0.1rem #FFFFFF, inset 0.1rem 0.1rem 0 #FEEAF6FF;
+    margin: 10px;
 }
 
 .buttons .btn svg {
     cursor: pointer;
     width: 50%;
     height: 50%;
-    fill: #728C98; /* Adjust the color of the SVG icons */
+    fill: var(--control-button-icon-color);
 }
-.buttons .play svg{
+
+.buttons .play svg {
     cursor: pointer;
     width: 50%;
     height: 50%;
-    fill: #728C98; /* Adjust the color of the SVG icons */
+    fill: var(--control-button-icon-color);
 }
-.buttons .play {
 
+.buttons .play {
     width: 90px;
     height: 90px;
-
 }
 
 .buttons .btn:hover {
-    background-color: #FFFFFF;
+    background-color: var(--control-button-hover-background);
     border-radius: 50%;
 }
+
 .player__fireplace {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0; /* Set a lower z-index to place "conva" in the background */
+    z-index: 0;
 }

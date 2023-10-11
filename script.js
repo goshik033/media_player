@@ -12,8 +12,8 @@ const player = document.querySelector('.player'),
 const progressSlider = document.querySelector('.progress-slider');
 
 //Название песен
-const songs = ['Aqua - Barbie Girl', 'The Offspring - You gonna go so far, kid', 'Leningrad - WWW',
-    'Eurythmics - Sweet Dreams Are Made of This', 'Depeche Mode - Personal Jesus', 'C.C.Catch - Heaven And Hell']
+const songs = ['Aqua - Barbie Girl','Eurythmics - Sweet Dreams Are Made of This',  'Leningrad - WWW',
+    'The Offspring - You gonna go so far, kid', 'Depeche Mode - Personal Jesus', 'C.C.Catch - Heaven And Hell']
 // Песня по умолчанию 
 let songIndex = 0
 
@@ -96,8 +96,8 @@ audio.addEventListener('ended', nextSong)
 
 
 // ---------------------------- ЭКВАЛАЙЗЕР ----------------------------
-const columnsGap = 2;
-const columnCount = 256; // Кол-во колонок: 1024, 512, 256, 128, 64
+const columnsGap = 70;
+const columnCount = 100; // Кол-во колонок: 1024, 512, 256, 128, 64
 
 const canvas = document.getElementById('player-fireplace');
 const ctx = canvas.getContext('2d');
@@ -106,7 +106,7 @@ let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 let source = audioCtx.createMediaElementSource(audio);
 let analyser = audioCtx.createAnalyser();
 source.connect(analyser); // Подключаем анализатор к элементу audio
-analyser.connect(audioCtx.destination);
+analyser.connect(audioCtx.destination); // Без этой строки нет звука, но анализатор работает.
 let frequencyData = new Uint8Array(columnCount);
 
 window.addEventListener('resize', resizeCanvas, false);
@@ -115,76 +115,101 @@ function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-resizeCanvas();
 
-// Рисует колонку вертикально
-function drawColumnRight(y, height, width) {
-    const cornerRadius = 5; // Радиус закругления углов
-    const gradient = ctx.createLinearGradient( canvas.width - width / 2, y, canvas.width,y);
-    gradient.addColorStop(0, "rgba(255,0,0,0)");
-    // gradient.addColorStop(1, "rgba(255,255,255,1)");
-    gradient.addColorStop(0.9, "#ff0077");
+// Функция для центрирования canvas
+function centerCanvas() {
+    const parentElement = canvas.parentElement;
+    const parentWidth = parentElement.offsetWidth;
+    const parentHeight = parentElement.offsetHeight;
 
-    ctx.fillStyle = gradient;
+    const canvasLeft = (parentWidth - canvas.width) / 2;
+    const canvasTop = (parentHeight - canvas.height) / 2;
 
-
-
-    // Установка градиента в качестве заливки
-    ctx.fillStyle = gradient;
-
-    // Рисование прямоугольника с закругленными углами
-    ctx.beginPath();
-    ctx.moveTo(canvas.width - width / 2, y + cornerRadius);
-    ctx.arcTo(canvas.width - width / 2, y, canvas.width, y, cornerRadius);
-    ctx.arcTo(canvas.width, y, canvas.width, y + height, 0);
-    ctx.arcTo(canvas.width, y + height, canvas.width - width / 2, y + height, 0);
-    ctx.arcTo(canvas.width - width / 2, y + height, canvas.width - width / 2, y, cornerRadius);
-    ctx.closePath();
-    ctx.fill();
+    canvas.style.left = `${canvasLeft}px`;
+    canvas.style.top = `${canvasTop}px`;
 }
 
-function drawColumn(y, height, width) {
-    const cornerRadius = 5; // Радиус закругления углов
+// Изменение размеров canvas при загрузке страницы и изменении размера окна
+window.addEventListener('load', () => {
+    resizeCanvas();
+    centerCanvas();
+});
 
-    const gradient = ctx.createLinearGradient( width / 2, y, 0,y);
-    gradient.addColorStop(0, "rgba(255,0,0,0)");
-    gradient.addColorStop(0.9, "red");
+window.addEventListener('resize', () => {
+    resizeCanvas();
+    centerCanvas();
+});
 
-    ctx.fillStyle = gradient; // Лаймовый цвет
+// Рисует колонку
+function drawColumn(x, width, height) {
+    const cornerRadius = Math.abs(20 * (width / 100)); // Радиус закругления углов
 
-    // Рисование прямоугольника с закругленными углами
+    // Рисование основной части колонки с тенью
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    ctx.shadowBlur = 10;  // Уменьшаем размытие тени
+    ctx.shadowOffsetX = 5;
+    ctx.fillStyle = "#ff00b3"; // Лаймовый цвет
+    // ctx.setTransform(1, 0, 0.2, 1, 0, 0);
     ctx.beginPath();
-    ctx.moveTo( width / 2, y + cornerRadius);
-    ctx.arcTo(width / 2, y, 0, y, cornerRadius);
-    ctx.arcTo(0, y, 0, y + height, 0);
-    ctx.arcTo(0, y + height, width / 2, y + height, 0);
-    ctx.arcTo( width / 2, y + height,  width / 2, y, cornerRadius);
+    ctx.moveTo(x + cornerRadius, canvas.height / 2 - height / 2);
+    ctx.arcTo(x + width, canvas.height / 2 - height / 2, x + width, canvas.height / 2, 0);
+    ctx.arcTo(x + width, canvas.height / 2, x, canvas.height / 2, 0);
+    ctx.arcTo(x, canvas.height / 2, x, canvas.height / 2 - height / 2, 0);
+    ctx.arcTo(x, canvas.height / 2 - height / 2, x + width, canvas.height / 2 - height / 2, 0);
     ctx.closePath();
     ctx.fill();
+
+
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+    ctx.shadowBlur = 5;  // Уменьшаем размытие тени
+    ctx.shadowOffsetX = 2;
+
+    // Очистка параметров тени
+    // ctx.shadowColor = 'rgba(0, 0, 0, 0)';
+    // ctx.shadowBlur = 0;
+    // ctx.shadowOffsetX = 0;
+
+    // Рисование верхней части колонки без тени
+    ctx.fillStyle = "#ff93dd"; // Лаймовый цвет
+    ctx.beginPath();
+    ctx.moveTo(x + cornerRadius, canvas.height / 2 + height / 2);
+    ctx.arcTo(x + width, canvas.height / 2 + height / 2, x + width, canvas.height / 2, 0);
+    ctx.arcTo(x + width, canvas.height / 2, x, canvas.height / 2, 0);
+    ctx.arcTo(x, canvas.height / 2, x, canvas.height / 2 + height / 2, 0);
+    ctx.arcTo(x, canvas.height / 2 + height / 2, x + width, canvas.height / 2 + height / 2, 0);
+    ctx.closePath();
+    ctx.fill();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
+
 
 function render() {
-    analyser.getByteFrequencyData(frequencyData); // Записываем в массив данные уровней частот
+    analyser.getByteFrequencyData(frequencyData);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const columnWidth = 12;
-    const heightScale = canvas.width / 300; // Масштабный коэффициент
 
-    let yPos = 0;
-    let xPos = 0;
+    const maxColumnHeight = canvas.height ; // Максимальная высота колонки
+    const columnWidth = (canvas.width - (columnsGap * (columnCount -1))) / columnCount;
 
     for (let i = 0; i < frequencyData.length; i++) {
-        let columnHeight = frequencyData[i] * heightScale;
 
-        // Рисуем колонки справа
-        drawColumnRight(yPos, columnWidth, columnHeight);
-        yPos += columnWidth + columnsGap;
+        const columnHeight = frequencyData[i] / 270 * maxColumnHeight;
+        const xPos = i * (columnWidth + columnsGap);
 
-        drawColumn(xPos, columnWidth, columnHeight);
-        xPos += columnWidth + columnsGap;
+        // Плавное изменение высоты колонок
+        const currentHeight = parseFloat(canvas.dataset[`columnHeight${i}`]) || 0;
+        const targetHeight = columnHeight;
+        const ease = 0.2; // Параметр сглаживания для плавности анимации
+        const newHeight = currentHeight + (targetHeight - currentHeight) * ease;
+
+        // Сохранение текущей высоты колонки
+        canvas.dataset[`columnHeight${i}`] = newHeight;
+
+        // Рисование колонки
+        drawColumn(xPos, columnWidth, newHeight);
     }
 
     window.requestAnimationFrame(render);
 }
 
-window.requestAnimationFrame(render);
+window.requestAnimationFrame(render)
