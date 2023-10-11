@@ -50,6 +50,8 @@ body {
 
 
 .player {
+    position: relative;
+    z-index: 1;
     display: flex;
     background: #F7FBFD;
     color: #fff;
@@ -111,10 +113,9 @@ body {
     /*transition: background-color 0.3s ease; !* Smooth transition for hover effect *!*/
 }
 
-.progress__container:hover {
-
-    /*background: #616161; !* Darker gray background on hover *!*/
-}
+/*input[type=range]::-moz-range-track:hover {*/
+/*    background: #728C98;;*/
+/*}*/
 
 
 input[type=range]::-moz-range-track {
@@ -140,6 +141,15 @@ input[type=range]::-moz-range-thumb {
     height: 1.4rem;
     padding: 0;
     width: 1.4rem;
+}
+input[type="range"]::-moz-range-progress {
+    height: 0.5rem;
+    cursor: pointer;
+    animate: 0.2s;
+    border: 0;
+    border-radius: 1rem;
+    bottom: 0;
+    background-color: #43e5f7;
 }
 
 
@@ -196,4 +206,10 @@ input[type=range]::-moz-range-thumb {
 .buttons .btn:hover {
     background-color: #FFFFFF;
     border-radius: 50%;
+}
+.player__fireplace {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Set a lower z-index to place "conva" in the background */
 }
