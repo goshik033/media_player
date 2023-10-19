@@ -11,11 +11,13 @@
 <body>
 <div class="wrapper">
     <canvas class="player__fireplace" id="player-fireplace"></canvas>
+    <canvas class="player__line" id="player-line"></canvas>
+
     <div class="player">
         <div class="cover"><img class="cover__img" src="img/1.jpg" alt="cover"></div>
 
         <div class="song">Song Title</div>
-        <audio class = "audio" src='audio/Aqua - Barbie Girl.mp3'></audio>
+        <audio  class = "audio" src='audio/Aqua - Barbie Girl.mp3'></audio>
         <div class="progress__container">
             <input type="range" class="progress-slider" min="0" max = "3000" value="0">
         </div>
@@ -31,12 +33,6 @@
                     <path class="controls__play__path" d="M0.0195312 0.269531L13.7305 9L0.0195312 17.7305V0.269531Z"/>
                 </svg>
             </div>
-            <!-- <div class="pause">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.5195 0.269531H15.5V17.7305H10.5195V0.269531ZM0.5 17.7305V0.269531H5.48047V17.7305H0.5Z" fill="#728C98"/>
-                </svg>
-            </div> -->
-           
             <div class="btn next">
                 <svg aria-hidden="true" focusable="false" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.98828 0.5H9.5V9.5H7.98828V0.5ZM0.5 9.5V0.5L6.86328 5L0.5 9.5Z" />

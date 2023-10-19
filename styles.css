@@ -1,13 +1,13 @@
 :root {
     --background-wrapper: rgba(255, 186, 227, 0.96);
-    --player-background: #ffe8f8; /* Более розовый оттенок */
-    --player-text-color: #FF4E94; /* Более розовый оттенок */
-    --song-title-color: #FF73A1; /* Более розовый оттенок */
-    --progress-slider-background: #FEEAF6; /* Более розовый оттенок */
-    --progress-slider-fill: #FF88B9; /* Более розовый оттенок */
-    --control-button-background: #FEEAF6; /* Более розовый оттенок */
-    --control-button-hover-background: #FFF4FD; /* Более светлый розовый оттенок */
-    --control-button-icon-color: #FF4E94; /* Более розовый оттенок */
+    --player-background: #ffe8f8;
+    --player-text-color: #FF4E94;
+    --song-title-color: #FF73A1;
+    --progress-slider-background: #FEEAF6;
+    --progress-slider-fill: #FF88B9;
+    --control-button-background: #FEEAF6;
+    --control-button-hover-background: #FFF4FD;
+    --control-button-icon-color: #FF4E94;
 }
 
 *,
@@ -61,6 +61,7 @@ body {
 }
 
 .player {
+
     position: relative;
     z-index: 1;
     display: flex;
@@ -69,12 +70,15 @@ body {
     flex-direction: column;
     align-items: center;
     max-width: 380px;
+    min-width: 360px;
+
     width: 100%;
     padding-bottom: 25px;
     border-radius: 30px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    opacity: 0.8; /* Пример прозрачности (меньше 1 для прозрачности) */
+    opacity: 0.8;
 }
+
 
 .title {
     font-style: normal;
@@ -90,13 +94,11 @@ body {
 }
 
 .cover__img {
+    border: 20px solid rgba(0, 0, 0, 0.5);
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
     max-width: 100%;
-    /*min-height: 380px;*/
-    height: auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-
 }
 
 .song {
